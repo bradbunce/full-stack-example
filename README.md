@@ -61,9 +61,9 @@ The application will be available at http://localhost:3000.
 3. The fully rendered HTML is sent to the client
 4. The client-side JavaScript "hydrates" the HTML, making it interactive
 
-### Real-Time Updates
+### Flag Updates
 
-The application uses Server-Sent Events (SSE) to push real-time feature flag updates from the server to the client.
+To see updated flag values, you need to refresh the page or use the LaunchDarkly dashboard to change flag values. The application will display the latest flag values on page load.
 
 ## Feature Flags Used
 
