@@ -90,3 +90,7 @@ To see updated flag values, you need to refresh the page or use the LaunchDarkly
 - `/pages`: Next.js pages and API routes
 - `/public`: Static assets
 - `/styles`: CSS styles
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
