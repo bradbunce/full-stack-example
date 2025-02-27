@@ -1,0 +1,5 @@
+.spinningLogo {
+  /* No size properties here, as they will be inherited from the App-logo class */
+}
+
+/* We don't need to define the keyframes here since they're already in globals.css */

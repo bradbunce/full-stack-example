@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Head from 'next/head';
 import ClientLogo from '../components/ClientLogo';
 import ServerLogo from '../components/ServerLogo';
@@ -36,6 +36,8 @@ export async function getServerSideProps() {
   // Get the initial server-side flag value
   const featureFlagKey = "show-node-js-logo";
   const flagValue = await getFeatureFlag(featureFlagKey, serverContext, false);
+  
+  console.log(`[SERVER] Initial flag value for ${featureFlagKey}: ${flagValue}`);
   
   // Prepare the initial data for the page
   return {

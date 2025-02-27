@@ -1,44 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 
 const ServerLogo = ({ initialFlagValue, flagInfo }) => {
-  const [flagValue, setFlagValue] = useState(initialFlagValue);
-  const [info, setInfo] = useState(flagInfo || "The server-side feature flag evaluation is");
-
-  // Set up SSE connection for real-time updates
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const events = new EventSource('/api/events');
-      
-      events.onmessage = (event) => {
-        try {
-          const parsedData = JSON.parse(event.data);
-          if (parsedData.source === "TRUE" || parsedData.source === "FALSE") {
-            setFlagValue(parsedData.source === "TRUE");
-            if (parsedData.info) {
-              setInfo(parsedData.info);
-            }
-          }
-        } catch (error) {
-          console.error('Error parsing SSE data:', error);
-        }
-      };
-
-      return () => {
-        events.close();
-      };
-    }
-  }, []);
-
+  console.log('[ServerLogo] Component initializing with flag value:', initialFlagValue);
+  
+  const [flagValue] = useState(initialFlagValue);
+  const [info] = useState(flagInfo || "The server-side feature flag evaluation is");
+  
   return (
-    <div>
-      <Image 
-        src={flagValue ? "/images/nodejsLogo.svg" : "/images/ldLogo_gray.svg"} 
-        className="App-logo" 
-        alt={flagValue ? "Node.js logo" : "LaunchDarkly logo"} 
-        width={150} 
-        height={150} 
-      />
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div className="App-logo" style={{ width: '100px', height: '100px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        {flagValue ? (
+          <Image 
+            src="/images/nodejsLogo.svg"
+            alt="Node.js logo"
+            width={100}
+            height={100}
+            priority={flagValue} // Only prioritize if this image is actually shown
+          />
+        ) : (
+          <Image 
+            src="/images/ldLogo_gray.svg"
+            alt="LaunchDarkly logo"
+            width={100}
+            height={100}
+            priority={!flagValue} // Only prioritize if this image is actually shown
+          />
+        )}
+      </div>
       <p>{info} <b>{flagValue ? "TRUE" : "FALSE"}</b></p>
     </div>
   );

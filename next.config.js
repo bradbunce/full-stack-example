@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false, // Disabled strict mode
   swcMinify: true,
   // Make environment variables available to the browser
   env: {
