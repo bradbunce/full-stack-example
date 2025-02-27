@@ -20,13 +20,26 @@ This application demonstrates two types of feature flags:
 1. **Server-side feature flags** using the LaunchDarkly Node.js SDK
 2. **Client-side feature flags** using the LaunchDarkly React SDK
 
+## LaunchDarkly Requirements
+
+**IMPORTANT**: This application requires a LaunchDarkly account to function properly. Before running the application, you must:
+
+1. Create a LaunchDarkly account if you don't already have one
+2. Create a project in LaunchDarkly
+3. Create the following feature flags in your LaunchDarkly project:
+   - `show-node-js-logo` (boolean flag) - Used for server-side rendering
+   - `showReactLogo` (boolean flag) - Used for client-side rendering
+4. Obtain your SDK keys (server-side and client-side) from the LaunchDarkly dashboard
+
+Without these steps, the application will not function as expected.
+
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js (v14 or later)
 - npm or yarn
-- LaunchDarkly account (for full functionality)
+- LaunchDarkly account with properly configured flags (see above)
 
 ### Environment Variables
 
@@ -38,7 +51,7 @@ LD_SDK_KEY=your-launchdarkly-server-sdk-key
 REACT_APP_LD_CLIENTSIDE_ID=your-launchdarkly-client-side-id
 ```
 
-Replace the placeholder values with your actual LaunchDarkly SDK keys.
+Replace the placeholder values with your actual LaunchDarkly SDK keys from your project.
 
 ### Installation
 
